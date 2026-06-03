@@ -1,13 +1,42 @@
 [gd_scene format=3 uid="uid://dx5xxnyv4k330"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
+[ext_resource type="PackedScene" uid="uid://b7fgc7esgdnpi" path="res://Objects/player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://c65ylwxj5qh08" path="res://Models/tavern.glb" id="1_fj7yv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
+albedo_color = Color(0.15310922, 0.28413913, 0.0952973, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gv5m4"]
+size = Vector2(50, 50)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(50, 1, 50)
 
 [node name="World" type="Node3D" unique_id=1682477861]
 
-[node name="Terrain" type="Node3D" parent="." unique_id=275482961]
+[node name="Player" parent="." unique_id=562143464 instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="Terrain" unique_id=1620231425]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1663084199]
+transform = Transform3D(0.8433258, 0.5374027, 0, 0.013176799, -0.020677853, 0.99969935, 0.5372411, -0.84307224, -0.024519414, -9.653069, 4.0570354, -12.310727)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain" unique_id=1675510233]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2752905, 0.14483178, 0.13559663)
-shape = SubResource("WorldBoundaryShape3D_gv5m4")
+[node name="Terrain" type="Node3D" parent="." unique_id=1618639591]
+
+[node name="Floor" type="StaticBody3D" parent="Terrain" unique_id=458528457]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Floor" unique_id=356473965]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gv5m4")
+mesh = SubResource("QuadMesh_gv5m4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Floor" unique_id=1675510233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+rotation_order = 3
+shape = SubResource("BoxShape3D_gv5m4")
+
+[node name="tavern" parent="Terrain" unique_id=1152617227 instance=ExtResource("1_fj7yv")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 10.523257, 0.24301767, -1.9448891)
+
+[node name="Cliff" type="StaticBody3D" parent="Terrain" unique_id=830973789]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
