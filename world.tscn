@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dx5xxnyv4k330"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
+
+[node name="World" type="Node3D" unique_id=1682477861]
+
+[node name="Terrain" type="Node3D" parent="." unique_id=275482961]
+
+[node name="Sprite3D" type="Sprite3D" parent="Terrain" unique_id=1620231425]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain" unique_id=1675510233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2752905, 0.14483178, 0.13559663)
+shape = SubResource("WorldBoundaryShape3D_gv5m4")
