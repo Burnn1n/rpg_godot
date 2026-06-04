@@ -13,9 +13,8 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var rotating_radius = -event.relative.x * sensitivity
-		rotate_y(rotating_radius)
-		camera.rotate_x(rotating_radius)
+		rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
 		
 func _process(delta: float) -> void:
